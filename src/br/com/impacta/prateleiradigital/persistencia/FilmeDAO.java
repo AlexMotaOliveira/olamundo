@@ -52,6 +52,12 @@ public class FilmeDAO {
                                 int numeroDeVotos){
         Filme filme = new Filme();
         //TODO fazer a consulta ao banco e preencher o objeto filme
+        filme.setTitulo("Retorno do BD");
+        filme.setGenero(genero);
+        filme.setDiretor(diretor);
+        filme.setNota(notaMinima);
+        filme.setNumeroDeVotos(numeroDeVotos);
+        System.out.println("Consulta ao banco realizada com sucesso!!!");
         return filme ;
     }
 }

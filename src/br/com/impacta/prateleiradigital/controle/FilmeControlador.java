@@ -70,6 +70,18 @@ public class FilmeControlador  {
                         notaMinima, numeroDeVotos);
     }
 
+    public Filme sortear(Filme filme) {
+       if (filme != null){
+           return filmeDAO
+                   .consultarFilme(filme.getGenero(),
+                           filme.getDiretor(),
+                           filme.getNota(),
+                           filme.getNumeroDeVotos());
+       }else {
+          return null;
+       }
+    }
+
     /**
      * importa uma lista de filmes a partir de um arquivo
      */
