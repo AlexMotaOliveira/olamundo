@@ -25,6 +25,8 @@ public class FilmeControladorTestes {
     public void validarSortearFilmeENulo(){
         Filme filme = null;
 
+        System.out.println("Hello World!");
+
         Filme filmeDAO = new FilmeControlador().sortear(filme);
         Assert.assertNull(filmeDAO);
     }

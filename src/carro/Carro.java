@@ -13,4 +13,12 @@ public class Carro {
 			   "\n Cor : " + cor;	
 	}
 
+	@Override
+	public String toString() {
+		return "Carro{" +
+				"modelo='" + modelo + '\'' +
+				", potenciaDoMotor=" + potenciaDoMotor +
+				", cor='" + cor + '\'' +
+				'}';
+	}
 }
