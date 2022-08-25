@@ -23,10 +23,10 @@ public class ArrayLista {
         List<String> list = new ArrayList<>();
         List<Integer> list2 = new ArrayList<>(100);
 
-        list.add("Alex"); // 0
-        list.add("João"); // 1
-        list.add("Maria");// 2
-        list.add("Jose");// 3
+        list.add("Alex");  // 0
+        list.add("João");  // 1
+        list.add("Maria"); // 2
+        list.add("Jose");  // 3
 
 
         System.out.println("list na posição 3 : " + list.get(3));
@@ -41,6 +41,8 @@ public class ArrayLista {
 
 
         System.out.println("list tem : " + list.size());
+        list.remove("Jose");
+
 
         for (Object cadaValor: list) {
             System.out.println(cadaValor);
@@ -49,6 +51,8 @@ public class ArrayLista {
         System.out.println(list.isEmpty());
         List novaLista = list.subList(0,2);
         System.out.println(novaLista);
+
+
 
         list.clear();
     }
