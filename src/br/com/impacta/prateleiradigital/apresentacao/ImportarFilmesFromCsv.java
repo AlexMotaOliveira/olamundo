@@ -1,5 +1,7 @@
 package br.com.impacta.prateleiradigital.apresentacao;
 
+import br.com.impacta.prateleiradigital.controle.FilmeControlador;
+
 import java.util.Scanner;
 
 public class ImportarFilmesFromCsv {
@@ -10,13 +12,15 @@ public class ImportarFilmesFromCsv {
 		
 		System.out.println("*** Importar arquivo ***");
 		System.out.println("Insira o nome do arquivo: ");
-		
-		
-		//TODO criar o metodo para ler o arquivo e persistir no BD
-		
-		System.out.println("Os filmes foram salvos com sucesso");
-		
-	
+		String caminhoDoArquivo = scanner.nextLine();
+
+		try{
+			new FilmeControlador().importarListaDeFilmes(caminhoDoArquivo);
+			System.out.println("Filmes importados com sucesso!!!");
+
+		}catch (RuntimeException e){
+			System.out.println(e);
+		}
 	}
 
 }

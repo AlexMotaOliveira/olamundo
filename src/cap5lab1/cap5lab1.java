@@ -4,6 +4,7 @@ public class cap5lab1 {
 
 	public static void main(String[] args) {
 
+
 		Funcionario funcionario1 = new Funcionario();
 		funcionario1.nome = "João";
 		funcionario1.sobrenome = "da Silva";

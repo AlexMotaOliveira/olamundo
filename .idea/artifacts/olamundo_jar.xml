@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact name="olamundo:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/olamundo_jar</output-path>
+    <root id="root">
+      <element id="archive" name="olamundo.jar">
+        <element id="module-output" name="olamundo" />
+      </element>
+      <element id="library" level="module" name="JUnit4" module-name="olamundo" />
+    </root>
+  </artifact>
+</component>
