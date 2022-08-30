@@ -6,7 +6,8 @@ import java.util.function.DoubleUnaryOperator;
 
 public class DoubleArrayUtils {
 
-    public static double[] transformaValores(double[] valores, DoubleUnaryOperator funcao) {
+    public static double[] transformaValores(double[] valores,
+                                             DoubleUnaryOperator funcao) {
         double[] result = new double[valores.length];
         for (int i = 0; i < valores.length; i++) {
             result[i] = funcao.applyAsDouble(valores[i]);
@@ -14,7 +15,8 @@ public class DoubleArrayUtils {
         return result;
     }
 
-    public static double[] filtraValores(double[] valores, DoublePredicate criterio) {
+    public static double[] filtraValores(double[] valores,
+                                         DoublePredicate criterio) {
 
         double[] temp = new double[valores.length];
         int counter = 0;
