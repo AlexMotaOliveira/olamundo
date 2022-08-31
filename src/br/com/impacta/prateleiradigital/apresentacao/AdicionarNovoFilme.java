@@ -1,6 +1,7 @@
 package br.com.impacta.prateleiradigital.apresentacao;
 
 import java.net.URI;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import br.com.impacta.prateleiradigital.controle.FilmeControlador;
@@ -44,7 +45,7 @@ public class AdicionarNovoFilme {
 					nota, duracao, ano, genero, numeroDeVotos, url);
 
 			// instancia e uso do objeto ao mesmo tempo
-			new FilmeControlador().adicionar(filme);
+//			new FilmeControlador().adicionar(filme);
 
 			// outra forma de instanciar e utilizar os metodos da classe
 			FilmeControlador filmeControlador = new FilmeControlador();
@@ -56,6 +57,8 @@ public class AdicionarNovoFilme {
 
 		}catch (NumberFormatException e) {
 			System.out.println("Insira um numero ao inves de um texto");
+		}catch (SQLException e){
+			System.out.println(e);
 		}
 	}
 }

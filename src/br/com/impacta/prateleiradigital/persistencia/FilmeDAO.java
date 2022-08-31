@@ -3,8 +3,10 @@ package br.com.impacta.prateleiradigital.persistencia;
 
 import br.com.impacta.prateleiradigital.negocio.Filme;
 
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class FilmeDAO {
 
@@ -13,9 +15,25 @@ public class FilmeDAO {
      *
      * @param filme
      */
-    public void salvar(Filme filme) {
-        //TODO implementar a persistencia do objeto
-        System.out.println("Filme salvo com sucesso!!!");
+    public void salvar(Filme filme) throws SQLException {
+        String sqlQuery =
+                "INSERT INTO filme VALUES (?,?,?,?,?,?,?,?,?)";
+
+        PreparedStatement preStm =
+                getConnection().prepareStatement(sqlQuery);
+
+        preStm.setNull(1, Types.INTEGER);
+        preStm.setString(2, filme.getTitulo());
+        preStm.setString(3, filme.getDiretor());
+        preStm.setDouble(4, filme.getNota());
+        preStm.setInt(5, filme.getDuracao());
+        preStm.setInt(6, filme.getAno());
+        preStm.setString(7, filme.getGenero());
+        preStm.setInt(8, filme.getNumeroDeVotos());
+        preStm.setString(9, filme.getUrl());
+
+        int row = preStm.executeUpdate();
+        System.out.println("quantidade de linhas inseridas: " + row);
     }
 
     public void salvar(List<Filme> filme) {
@@ -95,5 +113,13 @@ public class FilmeDAO {
         filme.setNumeroDeVotos(numeroDeVotos);
         System.out.println("Consulta ao banco realizada com sucesso!!!");
         return filme;
+    }
+
+    private Connection getConnection() throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/impacta";
+        String usuario = "root";
+        String senha = "Imp@ct@";
+
+        return DriverManager.getConnection(url, usuario, senha);
     }
 }

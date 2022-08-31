@@ -20,17 +20,17 @@ public class TesteConexao {
             String queryInsert = "insert into aluno values (?,?,?,?)";
             PreparedStatement preparedStatement = conexao.prepareStatement(queryInsert);
 
-            // na tabela a ordem da coluna 1 é o campo idaluno
-            preparedStatement.setInt(1, 5);
+                    // na tabela a ordem da coluna 1 é o campo idaluno
+            preparedStatement.setNull(1, Types.INTEGER );
 
             // na tabela a ordem da coluna 2 é o campo nome
             preparedStatement.setString(2, "Inserido pelo jdbc");
 
-            // na tabela a ordem da coluna 3 é o campo nome
-            preparedStatement.setString(3, "23658745996");
+            // na tabela a ordem da coluna 3 é o campo cpf
+            preparedStatement.setString(3, "2365987496");
 
-            // na tabela a ordem da coluna 3 é o campo nome
-            preparedStatement.setInt(4, 127);
+            // na tabela a ordem da coluna 3 é o campo matricula
+            preparedStatement.setInt(4, 129);
 
             preparedStatement.executeUpdate();
 
