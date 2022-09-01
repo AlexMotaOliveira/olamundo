@@ -6,6 +6,7 @@ import br.com.impacta.prateleiradigital.negocio.Filme;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class FilmeDAO {
@@ -73,21 +74,20 @@ public class FilmeDAO {
                                               int ano,
                                               String tituloParcial) throws SQLException {
 
-
-        ResultSet result = null;
-        if (genero.equals("")  && ano < 1900 && tituloParcial.equals("")) {
-            String query = "SELECT * FROM impacta.filme ";
-            Statement statement = getConnection().createStatement();
-            result = statement.executeQuery(query);
+        String sqlQuery = null;
+        if (genero.equals("") && ano < 1900 && tituloParcial.equals("")) {
+            sqlQuery = "SELECT * FROM impacta.filme ";
         } else {
-            String sqlQuery =
+            sqlQuery =
                     "SELECT * FROM impacta.filme " +
                             "where genero like \"%" + genero + "%\"" +
                             "and ano = \"" + ano + "\"" +
                             "and titulo like \"%" + tituloParcial + "%\"";
-            Statement statement = getConnection().createStatement();
-            result = statement.executeQuery(sqlQuery);
+
         }
+
+        Statement statement = getConnection().createStatement();
+        ResultSet result = statement.executeQuery(sqlQuery);
 
         List<Filme> listaFilme = new ArrayList<>();
         while (result.next()) {
@@ -119,16 +119,48 @@ public class FilmeDAO {
     public Filme consultarFilme(String genero,
                                 String diretor,
                                 double notaMinima,
-                                int numeroDeVotos) {
-        Filme filme = new Filme();
-        //TODO fazer a consulta ao banco e preencher o objeto filme
-        filme.setTitulo("Retorno do BD");
-        filme.setGenero(genero);
-        filme.setDiretor(diretor);
-        filme.setNota(notaMinima);
-        filme.setNumeroDeVotos(numeroDeVotos);
-        System.out.println("Consulta ao banco realizada com sucesso!!!");
-        return filme;
+                                int numeroDeVotos) throws SQLException {
+
+
+        String sqlQuery = null;
+        if (genero.equals("") && diretor.equals("") &&
+                notaMinima < 0 && numeroDeVotos < 0) {
+            sqlQuery = "SELECT * FROM impacta.filme ";
+        } else {
+            sqlQuery =
+                    "SELECT * FROM impacta.filme " +
+                            "where genero like \"%" + genero + "%\"" +
+                            "and diretor like \"%" + diretor + "%\"" +
+                            "and nota >= \"" + notaMinima + "\"" +
+                            "and numerodevotos >= \"" + numeroDeVotos + "\"";
+
+        }
+
+        Statement statement = getConnection().createStatement();
+        ResultSet result = statement.executeQuery(sqlQuery);
+
+        List<Filme> listaFilme = new ArrayList<>();
+        while (result.next()) {
+            Filme filme = new Filme();
+            filme.setTitulo(result.getString("titulo"));
+            filme.setDiretor(result.getString("diretor"));
+            filme.setNota(result.getDouble("nota"));
+            filme.setDuracao(result.getInt("duracao"));
+            filme.setAno(result.getInt("ano"));
+            filme.setGenero(result.getString("genero"));
+            filme.setNumeroDeVotos(result.getInt("numerodevotos"));
+            filme.setUrl(result.getString("url"));
+
+            listaFilme.add(filme);
+        }
+
+        if (listaFilme.size() > 0) {
+            Random random = new Random();
+            int numeroAleatorio = random.nextInt(listaFilme.size());
+            return listaFilme.get(numeroAleatorio);
+        }
+
+        return null;
     }
 
     private Connection getConnection() throws SQLException {

@@ -5,12 +5,14 @@ import br.com.impacta.prateleiradigital.negocio.Filme;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.sql.SQLException;
+
 
 public class FilmeControladorTestes {
 
 
     @Test
-    public void validarSortearFilmeNaoNulo(){
+    public void validarSortearFilmeNaoNulo() throws SQLException {
         Filme filme = new Filme();
         filme.setGenero("terror");
         filme.setDiretor("Alex");
@@ -22,7 +24,7 @@ public class FilmeControladorTestes {
     }
 
     @Test
-    public void validarSortearFilmeENulo(){
+    public void validarSortearFilmeENulo() throws SQLException {
         Filme filme = null;
 
         System.out.println("Hello World!");

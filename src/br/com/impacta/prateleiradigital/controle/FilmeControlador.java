@@ -77,22 +77,18 @@ public class FilmeControlador  {
     public Filme sortear(String genero,
                          String diretor,
                          double notaMinima,
-                         int numeroDeVotos) {
+                         int numeroDeVotos) throws SQLException {
         //TODO implementar a regra para escolher um filme
         return filmeDAO.consultarFilme(genero, diretor,
                         notaMinima, numeroDeVotos);
     }
 
-    public Filme sortear(Filme filme) {
-       if (filme != null){
+    public Filme sortear(Filme filme) throws SQLException {
            return filmeDAO
                    .consultarFilme(filme.getGenero(),
                            filme.getDiretor(),
                            filme.getNota(),
                            filme.getNumeroDeVotos());
-       }else {
-          return null;
-       }
     }
 
     /**
