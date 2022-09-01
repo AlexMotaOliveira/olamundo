@@ -2,6 +2,7 @@ package br.com.impacta.prateleiradigital.apresentacao;
 
 import br.com.impacta.prateleiradigital.controle.FilmeControlador;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ImportarFilmesFromCsv {
@@ -19,6 +20,8 @@ public class ImportarFilmesFromCsv {
 			System.out.println("Filmes importados com sucesso!!!");
 
 		}catch (RuntimeException e){
+			System.out.println(e);
+		} catch (SQLException e) {
 			System.out.println(e);
 		}
 	}

@@ -47,7 +47,7 @@ public class FilmeControlador  {
 
     public List<Filme> consultarFilmes(String genero,
                                       int ano,
-                                      String  tituloParcial) {
+                                      String  tituloParcial) throws SQLException {
         //TODO implementar regra para consultar uma lista de filmes
 
         return filmeDAO.consultarListaDeFilmes(
@@ -98,7 +98,7 @@ public class FilmeControlador  {
     /**
      * importa uma lista de filmes a partir de um arquivo
      */
-    public void importarListaDeFilmes(String caminhoDoArquivo) {
+    public void importarListaDeFilmes(String caminhoDoArquivo) throws SQLException {
         //TODO implementar a regra para add um filme de cada vez
         // vericar o caminho do arquivo e ler os dados
         // criar uma lista de Filme com os dados do arquivo

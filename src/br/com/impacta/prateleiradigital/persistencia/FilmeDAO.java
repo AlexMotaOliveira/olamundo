@@ -17,7 +17,7 @@ public class FilmeDAO {
      */
     public void salvar(Filme filme) throws SQLException {
         String sqlQuery =
-                "INSERT INTO filme VALUES (?,?,?,?,?,?,?,?,?)";
+                "INSERT INTO impacta.filme VALUES (?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement preStm =
                 getConnection().prepareStatement(sqlQuery);
@@ -33,14 +33,13 @@ public class FilmeDAO {
         preStm.setString(9, filme.getUrl());
 
         int row = preStm.executeUpdate();
+        preStm.close();
         System.out.println("quantidade de linhas inseridas: " + row);
     }
 
-    public void salvar(List<Filme> filme) {
-        //TODO implementar a persistencia do objeto
-        int countador = 0;
-        while (countador++ < 10) {
-            System.out.println("Filme salvo com sucesso!!!");
+    public void salvar(List<Filme> filme) throws SQLException {
+        for (Filme cadaFilme : filme) {
+            salvar(cadaFilme);
         }
     }
 
@@ -72,23 +71,30 @@ public class FilmeDAO {
 
     public List<Filme> consultarListaDeFilmes(String genero,
                                               int ano,
-                                              String tituloParcial) {
+                                              String tituloParcial) throws SQLException {
 
-        // TODO implementar a consulta ao BD com os argumentos passados
+        String sqlQuery =
+                "Select * from impacta.filme";
 
+        Statement statement = getConnection().createStatement();
+        ResultSet result = statement.executeQuery(sqlQuery);
 
-        // lista mokada para exibir a consulta ao banco
-        List<Filme> filmeList = new ArrayList<>();
+        List<Filme> listaFilme = new ArrayList<>();
+        while (result.next()){
+            Filme filme = new Filme();
+            filme.setTitulo(result.getString("titulo"));
+            filme.setDiretor(result.getString("diretor"));
+            filme.setNota(result.getDouble("nota"));
+            filme.setDuracao(result.getInt("duracao"));
+            filme.setAno(result.getInt("ano"));
+            filme.setGenero(result.getString("genero"));
+            filme.setNumeroDeVotos(result.getInt("numerodevotos"));
+            filme.setUrl(result.getString("url"));
 
-        filmeList.add(
-                new Filme("Terror", "Alex", 10, 120,
-                        2022, "terror", 300, "www"));
+            listaFilme.add(filme);
+        }
 
-        filmeList.add(
-                new Filme("Terror 2", "Alex", 10, 220,
-                        2023, "terror", 500, "www"));
-
-        return filmeList;
+        return listaFilme;
     }
 
     /**

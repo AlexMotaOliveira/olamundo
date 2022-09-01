@@ -3,6 +3,7 @@ package br.com.impacta.prateleiradigital.apresentacao;
 import br.com.impacta.prateleiradigital.controle.FilmeControlador;
 import br.com.impacta.prateleiradigital.negocio.Filme;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,6 +42,8 @@ public class ConsultarUmFilme {
             }
 
         } catch (RuntimeException e) {
+            System.out.println(e);
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
