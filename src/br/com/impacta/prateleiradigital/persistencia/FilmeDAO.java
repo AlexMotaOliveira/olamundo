@@ -73,14 +73,24 @@ public class FilmeDAO {
                                               int ano,
                                               String tituloParcial) throws SQLException {
 
-        String sqlQuery =
-                "Select * from impacta.filme";
 
-        Statement statement = getConnection().createStatement();
-        ResultSet result = statement.executeQuery(sqlQuery);
+        ResultSet result = null;
+        if (genero.equals("")  && ano < 1900 && tituloParcial.equals("")) {
+            String query = "SELECT * FROM impacta.filme ";
+            Statement statement = getConnection().createStatement();
+            result = statement.executeQuery(query);
+        } else {
+            String sqlQuery =
+                    "SELECT * FROM impacta.filme " +
+                            "where genero like \"%" + genero + "%\"" +
+                            "and ano = \"" + ano + "\"" +
+                            "and titulo like \"%" + tituloParcial + "%\"";
+            Statement statement = getConnection().createStatement();
+            result = statement.executeQuery(sqlQuery);
+        }
 
         List<Filme> listaFilme = new ArrayList<>();
-        while (result.next()){
+        while (result.next()) {
             Filme filme = new Filme();
             filme.setTitulo(result.getString("titulo"));
             filme.setDiretor(result.getString("diretor"));

@@ -100,8 +100,14 @@ public class Filme {
 
 	@Override
 	public String toString() {
-		return "Filme [titulo=" + titulo + ", diretores=" + diretor + ", nota=" + nota + ", duracao=" + duracao
-				+ ", ano=" + ano + ", genero=" + genero + ", numDeVotos=" + numeroDeVotos + ", url=" + url + "]";
+		return " titulo= " + titulo +
+				"\n diretores=" + diretor +
+				"\n nota=" + nota +
+				"\n duracao=" + duracao +
+				"\n ano=" + ano +
+				"\n genero=" + genero +
+				"\n numDeVotos=" + numeroDeVotos +
+				"\n url=" + url;
 	}
 
 	
