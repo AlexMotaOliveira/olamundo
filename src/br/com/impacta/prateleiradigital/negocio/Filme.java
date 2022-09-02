@@ -1,7 +1,8 @@
 package br.com.impacta.prateleiradigital.negocio;
 
 public class Filme {
-	
+
+	private int idFilme;
 	private String titulo;
 	private String diretor;
 	private double nota;
@@ -15,15 +16,15 @@ public class Filme {
 		
 	}
 
-	public Filme(String titulo, 
-				String diretores, 
-				double nota, 
-				int duracao, 
-				int ano, 
-				String genero, 
+	public Filme(String titulo,
+				String diretores,
+				double nota,
+				int duracao,
+				int ano,
+				String genero,
 				int numDeVotos,
 				String url) {
-		
+
 		this.titulo = titulo;
 		this.diretor = diretores;
 		this.nota = nota;
@@ -32,6 +33,14 @@ public class Filme {
 		this.genero = genero;
 		this.numeroDeVotos = numDeVotos;
 		this.url = url;
+	}
+
+	public int getIdFilme() {
+		return idFilme;
+	}
+
+	public void setIdFilme(int idFilme) {
+		this.idFilme = idFilme;
 	}
 
 	public String getTitulo() {

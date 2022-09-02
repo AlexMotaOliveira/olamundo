@@ -49,8 +49,16 @@ public class FilmeDAO {
      *
      * @param filme
      */
-    public void excluir(Filme filme) {
-        //TODO implementar a exclusão do objeto
+    public void excluir(Filme filme) throws SQLException {
+        String sqlQuery =
+                "DELETE FROM filme WHERE idFilme= ?";
+
+        PreparedStatement preStm =
+                getConnection().prepareStatement(sqlQuery);
+
+        preStm.setInt(1, filme.getIdFilme());
+        preStm.executeUpdate();
+        preStm.close();
     }
 
     /**
@@ -62,12 +70,44 @@ public class FilmeDAO {
      * @param anoFinal
      * @return
      */
-    public Filme[] consultarListaDeFilmes(String tituloParcial,
-                                          String genero,
-                                          int anoInicial,
-                                          int anoFinal) {
-        //TODO implementar a busca de uma lista de filmes
-        return null;
+    public List<Filme> consultarListaDeFilmes(String tituloParcial,
+                                              String genero,
+                                              int anoInicial,
+                                              int anoFinal) throws SQLException {
+
+        String sqlQuery;
+        if (genero.equals("") && tituloParcial.equals("")) {
+            sqlQuery = "SELECT * FROM impacta.filme ";
+        } else {
+            sqlQuery =
+                    "SELECT * FROM impacta.filme " +
+                            "where genero like \"%" + genero + "%\"" +
+                            "and titulo like \"%" + tituloParcial + "%\"" +
+                            "and ano between " + anoInicial + " and " + anoFinal +
+                            " order by titulo, numerodevotos desc";
+
+        }
+
+        Statement statement = getConnection().createStatement();
+        ResultSet result = statement.executeQuery(sqlQuery);
+
+        List<Filme> listaFilme = new ArrayList<>();
+        while (result.next()) {
+            Filme filme = new Filme();
+            filme.setIdFilme(result.getInt("idFilme"));
+            filme.setTitulo(result.getString("titulo"));
+            filme.setDiretor(result.getString("diretor"));
+            filme.setNota(result.getDouble("nota"));
+            filme.setDuracao(result.getInt("duracao"));
+            filme.setAno(result.getInt("ano"));
+            filme.setGenero(result.getString("genero"));
+            filme.setNumeroDeVotos(result.getInt("numerodevotos"));
+            filme.setUrl(result.getString("url"));
+
+            listaFilme.add(filme);
+        }
+
+        return listaFilme;
     }
 
     public List<Filme> consultarListaDeFilmes(String genero,

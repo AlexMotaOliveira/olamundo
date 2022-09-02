@@ -9,11 +9,13 @@ novo filme (3)
 
 2.1 O usuário informa os dados do filtro (que pode estar em branco) 
 solicitando a exibição dos filmes que atendem ao filtro (RN1)
-2.2 O sistema exibe Uma lista contendo as informações de cada filme (RN2) (A1)
+2.2 O sistema exibe Uma lista contendo as informações de cada
+filme (RN2) (A1)
 2.3 O usuário pode selecionar um filme e executar ação de remover 
 o filme (2.3.1) 
 	2.3.1) O sistema remove o filme do repositório de dados (A2)
-	2.3.2) O sistema atualiza a listagem de filmes reexibindo-a ao usuário 
+	2.3.2) O sistema atualiza a listagem de filmes reexibindo-a
+	ao usuário
 
 
 3) Adicionar novo filme

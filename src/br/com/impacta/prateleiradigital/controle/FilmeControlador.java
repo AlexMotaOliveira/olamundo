@@ -35,11 +35,11 @@ public class FilmeControlador  {
 
     }
 
-    public Filme[] consultarFilmes(String tituloParcial,
+    public List<Filme> consultarFilmes(String tituloParcial,
                                    String genero,
                                    int anoInicial,
-                                   int anoFinal) {
-        //TODO implementar regra para consultar uma lista de filmes
+                                   int anoFinal) throws SQLException {
+
 
         return filmeDAO.consultarListaDeFilmes(
                 tituloParcial, genero, anoInicial, anoFinal);
@@ -59,7 +59,7 @@ public class FilmeControlador  {
      *
      * @param filme
      */
-    public void remover(Filme filme) {
+    public void remover(Filme filme) throws SQLException {
         //TODO implementar a regra para excluir um filme
         filmeDAO.excluir(filme);
     }
