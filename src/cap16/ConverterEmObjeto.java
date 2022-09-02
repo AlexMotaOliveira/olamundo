@@ -1,5 +1,7 @@
 package cap16;
 
+import br.com.impacta.prateleiradigital.negocio.Filme;
+
 import java.io.*;
 import java.util.Random;
 
@@ -30,8 +32,15 @@ public class ConverterEmObjeto {
             BufferedReader bR = new BufferedReader(fileReader);
 
             String linha;
+            bR.readLine();
             while ((linha = bR.readLine()) != null) {
-
+               String[] array = linha.split(";");
+               Filme filme = new Filme();
+               filme.setTitulo(array[0]);
+               filme.setDiretor(array[1]);
+               filme.setGenero(array[2]);
+               filme.setNota(Double.parseDouble(array[3]));
+                System.out.println(filme);
             }
             bR.close();
         } catch (IOException e) {
