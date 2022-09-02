@@ -13,7 +13,6 @@ public class ListarERemoverFilme {
 
         try {
 
-
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("*** Remover um Filme ***");
@@ -68,12 +67,9 @@ public class ListarERemoverFilme {
                 System.out.println(cadaFilme);
             }
 
-
         } catch (SQLException e) {
             System.out.println(e);
             e.printStackTrace();
         }
-
     }
-
 }
