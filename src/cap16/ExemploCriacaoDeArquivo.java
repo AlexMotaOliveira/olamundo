@@ -10,11 +10,12 @@ public class ExemploCriacaoDeArquivo {
             FileOutputStream arquivo =
                     new FileOutputStream("Arquivo.txt");
             DataOutputStream dataOutputStream = new DataOutputStream(arquivo);
-            dataOutputStream.writeChars("Olá Mundo");
+            dataOutputStream.writeChars("Olá Mundo\n");
 
             FileInputStream fileInputStream =
                     new FileInputStream("Arquivo.txt");
             DataInputStream dataInputStream = new DataInputStream(fileInputStream);
+
             while (true) {
                 char caracter = dataInputStream.readChar();
                 System.out.println(caracter);
