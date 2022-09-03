@@ -3,6 +3,7 @@ package br.com.impacta.prateleiradigital.controle;
 import br.com.impacta.prateleiradigital.negocio.Filme;
 import br.com.impacta.prateleiradigital.persistencia.FilmeDAO;
 
+import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -94,17 +95,34 @@ public class FilmeControlador  {
     /**
      * importa uma lista de filmes a partir de um arquivo
      */
-    public void importarListaDeFilmes(String caminhoDoArquivo) throws SQLException {
-        //TODO implementar a regra para add um filme de cada vez
-        // vericar o caminho do arquivo e ler os dados
-        // criar uma lista de Filme com os dados do arquivo
-        // salvar uma lista de filmes no banco de dados
+    public void importarListaDeFilmes(String caminhoDoArquivo)
+            throws SQLException, IOException {
 
-        // Iterar/forEach a lista e salvar cada um dos objetos
         List<Filme> filmeList = new ArrayList<>();
-//        filmeList.forEach(filme -> filmeDAO.salvar(filme));
 
-        // salvar uma lista inteira no BD de uma unica vez
+        File file = new File(caminhoDoArquivo);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bR = new BufferedReader(fileReader);
+
+        String linha;
+        bR.readLine();
+        while ((linha = bR.readLine()) != null) {
+            String[] array = linha.split(";");
+            Filme filme = new Filme();
+            filme.setTitulo(array[0]);
+            filme.setDiretor(array[1]);
+            filme.setNota(Double.parseDouble(array[2]));
+            filme.setDuracao(Integer.parseInt(array[3]));
+            filme.setAno(Integer.parseInt(array[4]));
+            filme.setGenero(array[5]);
+            filme.setNumeroDeVotos(Integer.parseInt(array[6]));
+            filme.setUrl(array[7]);
+            System.out.println(filme);
+            System.out.println();
+
+            filmeList.add(filme);
+        }
+
         filmeDAO.salvar(filmeList);
     }
 }
