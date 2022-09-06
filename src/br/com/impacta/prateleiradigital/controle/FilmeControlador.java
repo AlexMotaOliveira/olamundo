@@ -7,6 +7,7 @@ import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class FilmeControlador  {
 
@@ -98,7 +99,7 @@ public class FilmeControlador  {
     public void importarListaDeFilmes(String caminhoDoArquivo)
             throws SQLException, IOException {
 
-        List<Filme> filmeList = new ArrayList<>();
+        Vector<Filme> filmeList = new Vector<>();
 
         File file = new File(caminhoDoArquivo);
         FileReader fileReader = new FileReader(file);
@@ -123,6 +124,14 @@ public class FilmeControlador  {
             filmeList.add(filme);
         }
 
-        filmeDAO.salvar(filmeList);
+        Thread thread = new Thread(() -> {
+            try {
+                filmeDAO.salvar(filmeList.get(0));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+
     }
 }

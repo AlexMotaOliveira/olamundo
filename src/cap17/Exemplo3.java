@@ -8,7 +8,9 @@ public class Exemplo3 {
                         "Thread interface funcional"));
 
         thread.start();
+
         outraExecucao();
+
 
 
         ExemploRunnable runnable = new ExemploRunnable();
@@ -30,5 +32,6 @@ public class Exemplo3 {
                     }
                 });
         thread.start();
+        Thread.yield();
     }
 }
