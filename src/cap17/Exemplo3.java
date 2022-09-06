@@ -10,9 +10,11 @@ public class Exemplo3 {
         thread.start();
         outraExecucao();
 
+
         ExemploRunnable runnable = new ExemploRunnable();
         Thread teste = new Thread(runnable);
         teste.start();
+        teste.setPriority(10);
     }
 
     public synchronized static void outraExecucao() {
